@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  schedule: MyString
+  runtime: 2016-09-11 11:15:07
+  url: MyString
+
+two:
+  schedule: MyString
+  runtime: 2016-09-11 11:15:07
+  url: MyString
