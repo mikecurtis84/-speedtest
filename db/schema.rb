@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20160911101759) do
     t.float    "fullyloaded"
     t.string   "status"
     t.string   "webpagetestid"
+    t.integer  "page_id"
     t.integer  "pages_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
@@ -34,6 +35,8 @@ ActiveRecord::Schema.define(version: 20160911101759) do
     t.datetime "runtime"
     t.string   "url"
     t.integer  "jobs_id"
+    t.integer  "project_id"
+    t.string   "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["jobs_id"], name: "index_pages_on_jobs_id", using: :btree

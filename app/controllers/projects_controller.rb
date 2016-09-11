@@ -36,10 +36,11 @@ class ProjectsController < ApplicationController
       end
 
        @project.urls.each_line do |url|
+        puts "saving #{url}"
         url.strip!
-        page = Page.create(:projectname => @project.projectname, :project_id => @project.id, :urls => url, :schedule => @project.schedule, :startdatetime => @project.datecreated, :har => "running",:project => @project)  
+        # page = Page.create(:projectname =>:urls => url, :schedule => @project.schedule, :startdatetime => @project.datecreated, :har => "running",:project => @project)  
+        page = Page.create(:schedule => @project.schedule, :runtime => @project.startdate, :url => url, :project => @project)
         page.save
-        NewWebPageTestJob.perform_later(page)
       end 
 
       

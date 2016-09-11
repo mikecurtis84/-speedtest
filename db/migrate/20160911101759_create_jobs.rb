@@ -8,7 +8,8 @@ class CreateJobs < ActiveRecord::Migration[5.0]
       t.float :fullyloaded
       t.string :status
       t.string :webpagetestid
-      t.belongs_to :pages, index: true
+      t.integer :page_id
+      t.belongs_to :pages
       t.timestamps
     end
   end

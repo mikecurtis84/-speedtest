@@ -6,7 +6,7 @@ class CreateProjects < ActiveRecord::Migration[5.0]
       t.string :schedule
       t.string :location
       t.datetime :startdate
-
+      
       t.timestamps
     end
   end

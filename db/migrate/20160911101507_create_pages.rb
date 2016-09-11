@@ -4,7 +4,9 @@ class CreatePages < ActiveRecord::Migration[5.0]
       t.string :schedule
       t.datetime :runtime
       t.string :url
-      t.belongs_to :jobs, index: true
+      t.belongs_to :jobs
+      t.integer :project_id
+      t.string :status
       t.timestamps
     end
   end

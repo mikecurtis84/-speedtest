@@ -1,3 +1,3 @@
 class Job < ApplicationRecord
-	belongs_to :pages
+	belongs_to :page
 end
