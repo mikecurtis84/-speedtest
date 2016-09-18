@@ -3,8 +3,10 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
-# Use postgresql as the database for Active Record
-gem 'pg', '~> 0.18'
+# Use sqlite3 as the database for Active Record
+gem 'sqlite3'
+# updated to Postgresql
+gem 'pg'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
@@ -30,8 +32,14 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# Nokogiri for talking to WebPageTest
+gem 'nokogiri'
+
 #Sidekiq used for async activejob
 gem 'sidekiq'
+ 
+#whenever to schedule periodic jobs.
+gem 'whenever'
 
 
 group :development, :test do
