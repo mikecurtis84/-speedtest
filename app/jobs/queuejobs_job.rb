@@ -14,9 +14,10 @@ class QueuejobsJob < ApplicationJob
 
 	 if response["statusCode"] == 200
 	 	job.update(:status => "queued", :webpagetestid => response["data"]["testId"])
+	 	print "...job queued succesfully"
 	 else
-	 	puts "Failed to queue job with Webpagespeedtest - #{response.inspect}"
-	 	job.update(:status => "failed to queue")
+	 	print "...failed to queue job with Webpagespeedtest - #{response.inspect}"
+	 	job.update(:status => "rejected", :har => response) 
 	 end
 
 
