@@ -4,20 +4,37 @@ class FindjobstorunJob < ApplicationJob
 
   def updatedatetime(page)
   ##Update the next runtime
+    if page["schedule"] == "Daily"
+      page.update(runtime: page["runtime"] + 1.days)
+    elsif page["schedule"] == "Weekly"
+      page.update(runtime: page["runtime"] + 7.days)
+    elsif page["schedule"] == "Monthly"
+      page.update(runtime: page["runtime"] + 1.months)
+    else
+
+    end
+
   end
 
 
 
-  def perform()
+  def perform() 
+
   	puts "Finding jobs to run"
   	#Todo:- Add some way of setting the status into the view and check for active here - no way to stop jobs at the mo!
     pagestorun = Page.where("runtime < ?", DateTime.now)
-
+    puts "Found #{pagestorun.count} jobs...."
+    
     pagestorun.each do |page|
-    job = Job.create(:status => "new")
-    page.jobs << job
-    updatedatetime(page)
+      job = Job.new(:status => "new")
+      page.jobs << job
+      updatedatetime(page) #Todo: This should only happen once we've confirmed job is queued. 
     end
+
+    if pagestorun.count != nil
+      #Run the queuejob task to pick out all unqueued jobs and send them to webpagespeedtest
+    end
+
 
   end
 end
