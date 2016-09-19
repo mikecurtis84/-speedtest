@@ -1,3 +1,6 @@
+A small rails app; feeds requests to WebPageSpeedTest's API, checks every minute for completion, and when it's done it recovers the data  and stashes it. You probably shouldn't download it yet. :-) 
+
+
 # README
 
 This README would normally document whatever steps are necessary to get the
@@ -22,3 +25,4 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+

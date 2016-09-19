@@ -2,20 +2,19 @@ class FindjobstorunJob < ApplicationJob
   queue_as :default
 
 
-  def updatedatetime(page)
-  ##Update the next runtime
-    if page["schedule"] == "Daily"
-      page.update(runtime: page["runtime"] + 1.days)
-    elsif page["schedule"] == "Weekly"
-      page.update(runtime: page["runtime"] + 7.days)
-    elsif page["schedule"] == "Monthly"
-      page.update(runtime: page["runtime"] + 1.months)
-    else
+  # def updatedatetime(page)
+  # ##Update the next runtime
+  #   if page["schedule"] == "Daily"
+  #     page.update(runtime: page["runtime"] + 1.days)
+  #   elsif page["schedule"] == "Weekly"
+  #     page.update(runtime: page["runtime"] + 7.days)
+  #   elsif page["schedule"] == "Monthly"
+  #     page.update(runtime: page["runtime"] + 1.months)
+  #   else
 
-    end
+  #   end
 
-  end
-
+  # end
 
 
   def perform() 
@@ -26,7 +25,7 @@ class FindjobstorunJob < ApplicationJob
     pagestorun.each do |page|
       job = Job.new(:status => "new")
       page.jobs << job
-      updatedatetime(page) #Todo: This should only happen once we've confirmed job is queued. 
+      # updatedatetime(page) #Todo: This should only happen once we've confirmed job is queued. 
     end
 
     if pagestorun.count != 0
@@ -34,11 +33,10 @@ class FindjobstorunJob < ApplicationJob
       QueuejobsJob.perform_later
     end
 
-
-  #set the next check for jobs in 5 minutes
-  puts "finished FindjobstorunJob, taking a wee 1 minute nap"
+  #Check any jobs in the queue, then schedule the next task
+  puts "finished FindjobstorunJob, checking for any jobs in queue and scheduling next "
+  GetrunningtasksJob.perform_later
   FindjobstorunJob.set(wait: 1.minute).perform_later
   end
-
 
 end

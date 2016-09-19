@@ -1,0 +1,2 @@
+#activate findjobstorun
+FindjobstorunJob.perform_later
