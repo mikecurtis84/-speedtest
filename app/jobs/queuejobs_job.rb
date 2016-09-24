@@ -2,6 +2,9 @@ class QueuejobsJob < ApplicationJob
   queue_as :default
 
 
+
+
+
   def queuewebpagespeedtest(job)
   	puts "....Queuing #{job.page["url"]}"
   	#Todo: use environment variable for Key
@@ -19,6 +22,7 @@ class QueuejobsJob < ApplicationJob
 	 	print "...failed to queue job with Webpagespeedtest - #{response.inspect}"
 	 	job.update(:status => "rejected", :har => response) 
 	 end
+
 
 
 	rescue => e

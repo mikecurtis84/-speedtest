@@ -1,2 +1,47 @@
 <h1>Pagesummary#allpages</h1>
-<p>Find me in app/views/pagesummary/allpages.html.erb</p>
+<h2>A view of up to 12 months stored data for project <%= @project.name %></h2>
+
+<% @pages.each do |page| %>
+<h2><%= page.url %></a></h2>
+<table>
+	<thead>
+
+		<tr>
+		<td></td>
+		<%page.jobs.each do |p| %>
+			<td><%= p.updated_at.to_date %></td>
+		<% end %></tr>
+	</thead>
+	<tbody>
+	</tbody>
+		
+		<tr>
+			<td><b>loadtime</b></td>
+			<% page.jobs.each do |p| %>
+			<td> <%=p.loadtime %> </td>
+			<% end %>
+		</tr>
+
+		<tr>
+			<td><b>Start Render time</b></td>
+			<% page.jobs.each do |p| %>
+			<td> <%=p.startrender %> </td>
+			<% end %>
+		</tr>
+
+		<tr>
+			<td><b>Number of Requests</b></td>
+			<% page.jobs.each do |p| %>
+			<td> <%=p.requests %> </td>
+			<% end %>
+		</tr>
+
+		<tr>
+			<td><b>Time to fully load</b></td>
+			<% page.jobs.each do |p| %>
+			<td> <%=p.fullyloaded %> </td>
+			<% end %>
+		</tr>
+
+	</table>
+<% end %>
