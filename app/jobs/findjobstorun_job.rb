@@ -1,20 +1,16 @@
 class FindjobstorunJob < ApplicationJob
   queue_as :default
 
-
-  # def updatedatetime(page)
-  # ##Update the next runtime
-  #   if page["schedule"] == "Daily"
-  #     page.update(runtime: page["runtime"] + 1.days)
-  #   elsif page["schedule"] == "Weekly"
-  #     page.update(runtime: page["runtime"] + 7.days)
-  #   elsif page["schedule"] == "Monthly"
-  #     page.update(runtime: page["runtime"] + 1.months)
-  #   else
-
-  #   end
-
-  # end
+  def updatedatetime(page)
+  ##Update the next runtime
+    if page["schedule"] == "Daily"
+      page.update(runtime: page["runtime"] + 1.days)
+    elsif page["schedule"] == "Weekly"
+      page.update(runtime: page["runtime"] + 7.days)
+    elsif page["schedule"] == "Monthly"
+      page.update(runtime: page["runtime"] + 1.months)
+    end
+ end
 
 
   def perform() 
@@ -25,8 +21,9 @@ class FindjobstorunJob < ApplicationJob
     pagestorun.each do |page|
       job = Job.new(:status => "new")
       page.jobs << job
-      # updatedatetime(page) #Todo: This should only happen once we've confirmed job is queued. 
+      updatedatetime(page)
     end
+
 
     if pagestorun.count != 0
       #Run the queuejob task to pick out all unqueued jobs and send them to webpagespeedtest
