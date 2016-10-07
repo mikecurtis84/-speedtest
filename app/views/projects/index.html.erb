@@ -8,7 +8,6 @@
       <th>Name</th>
       <th>Urls</th>
       <th>Schedule</th>
-      <th>Location</th>
       <th>Startdate</th>
       <th colspan="3"></th>
     </tr>
@@ -18,13 +17,15 @@
     <% @projects.each do |project| %>
       <tr>
         <td><%= project.name %></td>
-        <td><%= project.urls %></td>
+        <td><ul><% project.urls.each_line do |url| %>
+          <li><%= url %></li>
+          <% end %>
+          </ul>
+        </td>
         <td><%= project.schedule %></td>
-        <td><%= project.location %></td>
         <td><%= project.startdate %></td>
-        <td><%= link_to 'Show', project %></td>
-        <td><%= link_to 'Edit', edit_project_path(project) %></td>
-        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><b><%= link_to "Viewall", controller: "pagesummary", action: "allpages", id: project.id %></b></td>
+        <td><%= link_to 'Delete Project', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

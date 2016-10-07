@@ -16,7 +16,7 @@ class FindjobstorunJob < ApplicationJob
   def perform() 
   	#Todo:- Add some way of setting the status into the view and check for active here - no way to stop jobs at the mo!
     pagestorun = Page.where("runtime < ?", DateTime.now)
-    puts "FindjobstorunJob checking for new jobs, found #{pagestorun.count} jobs...."
+    puts "FindjobstorunJob checking for scheduled pages, found #{pagestorun.count} pages...."
     
     pagestorun.each do |page|
       job = Job.new(:status => "new")
@@ -33,7 +33,7 @@ class FindjobstorunJob < ApplicationJob
   #Check any jobs in the queue, then schedule the next task
   puts "finished FindjobstorunJob, checking for any jobs in queue and scheduling next "
   GetrunningtasksJob.perform_later
-  FindjobstorunJob.set(wait: 1.minute).perform_later
+  FindjobstorunJob.set(wait: 30.seconds).perform_later
   end
 
 end
