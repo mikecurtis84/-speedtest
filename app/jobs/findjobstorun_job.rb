@@ -9,6 +9,8 @@ class FindjobstorunJob < ApplicationJob
       page.update(runtime: page["runtime"] + 7.days)
     elsif page["schedule"] == "Monthly"
       page.update(runtime: page["runtime"] + 1.months)
+    elsif page["schedule"] == "One-Off"
+      page.update(runtime: page["runtime"] + 100.years)
     end
  end
 

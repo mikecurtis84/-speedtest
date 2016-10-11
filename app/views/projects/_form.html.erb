@@ -23,12 +23,7 @@
 
   <div class="field">
     <%= f.label :schedule %>
-    <%= f.text_field :schedule %>
-  </div>
-
-  <div class="field">
-    <%= f.label :location %>
-    <%= f.text_field :location %>
+    <%= f.select :schedule, options_for_select(["Daily", "Weekly", "Monthly", "One-Off"]) %>
   </div>
 
   <div class="field">
