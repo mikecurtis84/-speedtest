@@ -4,6 +4,7 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
+    @days = ["Daily", "Weekly", "Monthly", "One-off"]
     @projects = Project.all
   end
 

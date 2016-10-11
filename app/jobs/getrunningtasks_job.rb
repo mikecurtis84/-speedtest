@@ -21,6 +21,8 @@ class GetrunningtasksJob < ApplicationJob
   		job.update(:har => results.to_s, :loadtime => summary["_loadTime"], :startrender => summary["pageTimings"]["_startRender"], :requests => summary["_requestsFull"], :fullyloaded => summary["_fullyLoaded"], :status => "Complete") #Add Status 
   	elsif response["statusCode"] == 101
   		puts "Job #{job["id"]} not yet complete, status #{response["statusText"]}"
+    elsif response["statusCode"] == 100
+      puts "Job #{job["id"]} not yet complete, status #{response["statusText"]}"
     else
       job.update(:status => "failed", :har => response)
   	end

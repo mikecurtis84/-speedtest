@@ -35,7 +35,6 @@ class QueuejobsJob < ApplicationJob
   def perform()
  	queuedjobs = Job.where(:status => "new")
  	puts "Queing #{queuedjobs.count} Jobs with WebPageSpeedTest"
-
  	queuedjobs.each do |j|
  		queuewebpagespeedtest(j)
  	end
