@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @days = ["Daily", "Weekly", "Monthly", "One-off"]
+    @frequency = ["Daily", "Weekly", "Monthly", "One-off"]
     @projects = Project.all
   end
 
@@ -63,6 +63,9 @@ class ProjectsController < ApplicationController
   # DELETE /projects/1
   # DELETE /projects/1.json
   def destroy
+    destroy_pages_and_jobs()
+
+
     @project.destroy
     respond_to do |format|
       format.html { redirect_to projects_url, notice: 'Project was successfully destroyed.' }
@@ -75,6 +78,17 @@ class ProjectsController < ApplicationController
     def set_project
       @project = Project.find(params[:id])
     end
+
+    #when deleting projects, kill their jobs and pages as well. 
+    def destroy_pages_and_jobs
+      @project.pages.each do |page|
+        page.jobs.each do |job|
+          job.delete
+        end
+        page.delete
+      end
+    end
+
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
