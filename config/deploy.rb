@@ -22,7 +22,7 @@ set :deploy_to, '/home/deploy/speedtest'
 # set :format_options, command_output: true, log_file: 'log/capistrano.log', color: :auto, truncate: :auto
 
 # Default value for :pty is false
-# set :pty, true
+ set :pty, false
 
 # Default value for :linked_files is []
 # append :linked_files, 'config/database.yml', 'config/secrets.yml'
@@ -51,7 +51,7 @@ set :assets_roles, [:web, :app]
 
 # Defaults to 'assets'
 # This should match config.assets.prefix in your rails config/application.rb
-set :assets_prefix, 'prepackaged-assets'
+#set :assets_prefix, 'prepackaged-assets'
 
 # If you need to touch public/images, public/javascripts, and public/stylesheets on each deploy
 set :normalize_asset_timestamps, %w{public/images public/javascripts public/stylesheets}
