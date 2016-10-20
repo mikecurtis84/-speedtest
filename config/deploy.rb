@@ -60,3 +60,12 @@ set :normalize_asset_timestamps, %w{public/images public/javascripts public/styl
 # If you use Rails 4+ and you'd like to clean up old assets after each deploy,
 # set this to the number of versions to keep
 set :keep_assets, 2
+
+# Puma:
+set :puma_conf, "#{shared_path}/config/puma.rb"
+ 
+namespace :deploy do
+  before 'check:linked_files', 'puma:config'
+  before 'check:linked_files', 'puma:nginx_config'
+  after 'puma:smart_restart', 'nginx:restart'
+end

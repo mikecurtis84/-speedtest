@@ -56,6 +56,16 @@ GEM
     capistrano-rails (1.1.8)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
+    capistrano-rvm (0.1.2)
+      capistrano (~> 3.0)
+      sshkit (~> 1.2)
+    capistrano-upload-config (0.7.0)
+      capistrano (>= 3.0)
+    capistrano3-nginx (2.1.5)
+      capistrano (>= 3.0.0)
+    capistrano3-puma (1.2.1)
+      capistrano (~> 3.0)
+      puma (>= 2.6)
     chronic (0.10.2)
     coffee-rails (4.2.1)
       coffee-script (>= 2.2.0)
@@ -192,6 +202,10 @@ DEPENDENCIES
   byebug
   capistrano
   capistrano-rails
+  capistrano-rvm
+  capistrano-upload-config
+  capistrano3-nginx
+  capistrano3-puma
   coffee-rails (~> 4.2)
   figaro
   jbuilder (~> 2.5)
