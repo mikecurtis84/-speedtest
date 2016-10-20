@@ -5,7 +5,7 @@ require 'capistrano/rvm'
 require "capistrano/deploy"
 require 'capistrano/rails'
 
-
+# load 'deploy/assets'
 # Include tasks from other gems included in your Gemfile
 #
 # For documentation on these, see for example:
